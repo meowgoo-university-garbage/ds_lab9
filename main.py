@@ -10,6 +10,8 @@ PATH = "./Fire_Stations/Fire_Stations.shp"
 
 
 
+CLOSEST = 3
+
 fire_stations = gpd.read_file(PATH)
 TOTAL = len(fire_stations)
 TOTAL = 50
@@ -41,7 +43,7 @@ for i in range(len(selection)):
         distances[j] = src.distance(dst)
 
     indexes = np.argsort(distances)
-    for j in range(1, 4):
+    for j in range(1, 1 + CLOSEST):
         dst = selection.iloc[indexes[j]].geometry
         line = LineString([src, dst])
         lines.append(line)
